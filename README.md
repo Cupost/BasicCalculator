@@ -8,6 +8,11 @@
 ## Detail 
 
 ### Component List 
--
--
+1. Module Led-7-segment TM1637 
+  - D14 --> D17 / 4 pin  
+2. Led-matrix-8*8 MAX7219 SPI protocol 
+  - D10 + D11 + D13 / 3 pin
+3. Keypad 4x4 basic 
+  - D0 --> D7 / 8 pin 
+
 ### Schematic 

@@ -1,4 +1,7 @@
-3 module LED 7 Segment IC TM1637 giao thuc khong chuan - total: 4 pin - 2 chan nguon 
-Led ma tran 8x8 MAX7219 giao thuc SPI - total: 3 pin - 2 chan nguon 
-Ban phim ma tran mem 4x4 - total : 8 pin - 0 chan nguon 
+# Module Led-7-segment TM1637 
+- D14 --> D17 / 4 pin  
+# Led-matrix-8*8 MAX7219 SPI protocol 
+- D10 + D11 + D13 / 3 pin
+# Keypad 4x4 basic 
+- D0 --> D7 / 8 pin 
 
