@@ -6,3 +6,4 @@ char Read_keypad();
 // 10 - 11 - 12 - 13 : A - B - C - D key
 // 14 : * Key
 // 15 : # Key
+// Note: Using port
