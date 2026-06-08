@@ -8,18 +8,18 @@
 ### Component List 
 # Module Led-7-segment TM1637 
 - D14 --> D17 / 4 pin  
-  > [D14] = PC0 = DIO-1
-  > [D15] = PC1 = DIO-2
-  > [D16] = PC2 = DIO-3
-  > [D17] = PC3 = CLK 
+  > - [D14] = PC0 = DIO-1
+  > - [D15] = PC1 = DIO-2
+  > - [D16] = PC2 = DIO-3
+  > - [D17] = PC3 = CLK 
 # Led-matrix-8*8 MAX7219 SPI protocol 
 - D10 + D11 + D13 / 3 pin
-  > [D10] = PB2 = CS/SS  
-  > [D11] = PB3 = MOSI 
-  > [D13] = PB5 = SCK/CLK
+  > - [D10] = PB2 = CS/SS  
+  > - [D11] = PB3 = MOSI 
+  > - [D13] = PB5 = SCK/CLK
 # Keypad 4x4 basic 
 - D0 --> D7 / 8 pin
-  > [PortD]
+  > - [PortD]
 
 ### Schematic 
 
