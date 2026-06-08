@@ -56,3 +56,8 @@ char Read_keypad() {
 }
 
 // R1-R2-R3-R4-C1-C2-C3-C4
+
+void Keypad_init(void) {
+  // Set
+  DDRD = 0b11110000;
+}

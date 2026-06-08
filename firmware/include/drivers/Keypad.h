@@ -8,3 +8,4 @@ char Read_keypad();
 // 15 : # Key
 // 16 : no key press
 // Note: Using portd
+void Keypad_init(void);
