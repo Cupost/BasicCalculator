@@ -14,6 +14,9 @@
 
 ### Schematic 
 
+## Configuration 
+- F_OSC = 16MHz 
+---
 > [!NOTE]
 > IC TM1637 for Led 7 segment => just need to sent data one time on update value 
 > MAX7219 SPI protocol => Don need MISO pin on MCU, only transmit data 
