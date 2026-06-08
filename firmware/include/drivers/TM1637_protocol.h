@@ -1,2 +1,6 @@
 
-char Data_trans(char data, char state);
+char Data_transmit(char data, char state);
+
+void Start_condition(char state);
+
+void Stop_condition(char state);

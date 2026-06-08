@@ -1,11 +1,15 @@
 #include "drivers/Timer.h"
 #include <avr/io.h>
-#define CLK_ON PORTC = PORTC | (1 << 3)
-#define CLK_OFF PORTC = PORTC & (~(1 << 3))
-#define DIO_ON PORTC = PORTC | (1 << state)
-#define DIO_OFF PORTC = PORTC & (~(1 << state))
+#define CLK_ON PORTC |= (1 << 3)
+#define CLK_OFF PORTC &= (~(1 << 3))
+#define DIO_ON PORTC |= (1 << state)
+#define DIO_OFF PORTC &= (~(1 << state))
 
-// CLK is Low at begin
+/* From begin:
+ * CLK is driving high
+ * DIO is driving high
+ * We have 3 different DIO pin
+ * */
 void Start_condition(char state) {
   DIO_ON;
   delay_us(5);
@@ -13,18 +17,12 @@ void Start_condition(char state) {
   delay_us(5);
   DIO_OFF;
 }
-void Stop_condition(char state) {
-  DIO_OFF;
-  delay_us(5);
-  CLK_ON;
-  delay_us(5);
-  DIO_ON;
-}
+/* After Start_condition:
+ * CLK is driving high
+ * DIO is driving low
+ * */
 
-// PERF:
-// The function help to send data to device depend on state value
-// Don't have the START and STOP condition, main will decide that.
-char Data_trans(char data, char state) {
+char Data_transmit(char data, char state) {
   char bit;
   // Send 8 bit data
   for (int i = 0; i <= 7; i++) {
@@ -43,6 +41,7 @@ char Data_trans(char data, char state) {
   // Read bit 9 ACK
   CLK_OFF;
   delay_us(5);
+  DIO_ON;
   DDRC = DDRC & (~(1 << state)); // set DIO Input
   delay_us(5);
   CLK_ON;
@@ -58,4 +57,14 @@ char Data_trans(char data, char state) {
     DDRC = DDRC | (1 << state); // set DIO Output
     return 1;                   // ACK
   }
+}
+
+void Stop_condition(char state) {
+  CLK_OFF;
+  delay_us(5);
+  DIO_OFF;
+  delay_us(5);
+  CLK_ON;
+  delay_us(5);
+  DIO_ON;
 }
