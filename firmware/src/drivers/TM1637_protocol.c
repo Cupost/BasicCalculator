@@ -10,6 +10,11 @@
  * DIO is driving high
  * We have 3 different DIO pin
  * */
+
+/**
+ * Create a signal start send data
+ * state : Choose DIOx pin
+ **/
 void Start_condition(char state) {
   DIO_ON;
   delay_us(5);
@@ -22,6 +27,11 @@ void Start_condition(char state) {
  * DIO is driving low
  * */
 
+/*
+ * Send 1 byte data to DIOx pin
+ * @return 1 is success
+ * @return 0 is fail
+ * */
 char Data_transmit(char data, char state) {
   char bit;
   // Send 8 bit data
@@ -58,7 +68,15 @@ char Data_transmit(char data, char state) {
     return 1;                   // ACK
   }
 }
+/*After data transmit
+ * CLK is driving low
+ * DIO is driving hight
+ * */
 
+/*
+ * Create stop signal, turn off transmit
+ * state : Choose DIOx pin
+ * */
 void Stop_condition(char state) {
   CLK_OFF;
   delay_us(5);

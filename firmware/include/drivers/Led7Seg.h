@@ -1,4 +1,4 @@
-// TODO:
+
 // The function that Led_out the number , using state to choose which led out,
 char Led_out(unsigned int number, char state);
 // State = 0 : Led num 1
