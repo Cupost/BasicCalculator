@@ -5,6 +5,12 @@
 #define DIO_ON PORTC |= (1 << state)
 #define DIO_OFF PORTC &= (~(1 << state))
 
+void TM1637_protocol_init(void) {
+  // Set PC0:PC3 output
+  DDRC |= 0b00001111;
+  // Set CLK, DIO drive high at begin
+  PORTC |= 0b00001111;
+}
 /* From begin:
  * CLK is driving high
  * DIO is driving high

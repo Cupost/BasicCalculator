@@ -38,12 +38,6 @@ char Led_out(unsigned int number, char state) {
 /* Initiation for Led7Seg, with all 3 IC TM1637
  * */
 void Leg7Seg_init(void) {
-  // Set PC0:PC3 output
-  DDRC = 0b00001111;
-  // Set CLK, DIO drive high at begin
-  PORTC = 0b00001111;
-
-  // Config IC1637
 
   for (int i = 0; i < 3; i++) {
 
