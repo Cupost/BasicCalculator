@@ -5,6 +5,17 @@
  * state : choose DIOx pin
  * */
 char Led_out(unsigned int number, char state) {
+
+  unsigned char error_code[] = {0x86, 0xAF, 0xAF, 0xC0};
+  if (number > 9999) {
+    Start_condition(state);
+    Data_transmit(0b11000000, state); // Address C0H first
+    for (unsigned char i = 0; i < 4; i++)
+      Data_transmit(error_code[i], 2); // Sen data number
+    Stop_condition(state);
+    return 1;
+  }
+
   unsigned char element[4];
   element[0] = number % 10;
   number /= 10;
@@ -31,7 +42,6 @@ char Led_out(unsigned int number, char state) {
   for (unsigned char i = 0; i < 4; i++)
     Data_transmit(SEGMENT_MAP[element[i]], state); // Sen data number
   Stop_condition(state);
-
   return 1;
 }
 

@@ -15,18 +15,11 @@ int main() {
   Leg7Seg_init();
   // Variable
   unsigned int num1, num2, numt;
-  num1 = num2 = numt = 0;
-  char keycode;
+  num1 = num2 = 0;
+  numt = 10000;
+  char keycode, ope;
+  ope = 99;
   char state = 0;
-  char check = -3;
-
-  /*BUG:
-   * What if:
-   *  press * key first ?
-   *  press 1 key long ?
-   *  don't have start value ?
-   *
-   * */
 
   while (1) {
     do {
@@ -38,34 +31,50 @@ int main() {
       state = !state; // Change led out
       break;
     case 14: // *
-      if (check >= 0) {
-        Led_out(numt, 2);
-      } // Led out result
-
-    /*FIXME:
-     * [] Not have any command create numt value
-     * [] Not have lock feature after led_out( numt, 2)
-     * [] Not have operator update
-     * */
+      switch (ope) {
+      case 13:
+        numt = num1 / num2;
+        break;
+      case 12:
+        numt = num1 * num2;
+        break;
+      case 11:
+        numt = num1 - num2;
+        break;
+      case 10:
+        numt = num1 + num2;
+        break;
+      }
+      Led_out(numt, 2); // Led out result
+      break;
     case 13: // D key
       Led_matrix_out(13);
+      ope = 13;
       break;
     case 12: // C key
       Led_matrix_out(12);
+      ope = 12;
       break;
     case 11: // B key
       Led_matrix_out(11);
+      ope = 11;
       break;
     case 10: // A key
       Led_matrix_out(10);
+      ope = 10;
       break;
     }
 
     if (keycode >= 0 && keycode <= 9) {
-      if (state == 0)
+      if (state == 0) {
         num1 = (num1 % 1000) * 10 + keycode;
-      if (state == 1)
+        Led_out(num1, 0);
+      }
+      if (state == 1) {
         num2 = (num2 % 1000) * 10 + keycode;
+        Led_out(num2, 1);
+      }
     }
+    delay_ms(70);
   }
 }
