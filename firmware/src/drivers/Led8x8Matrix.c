@@ -79,26 +79,22 @@ char Led_matrix_out(char keycode) {
   switch (keycode) {
   case 10:
     for (unsigned char row = 1; row <= 8; row++) {
-      Matrix_send(
-          row, ADD[row - 1]); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
+      Matrix_send(row, ADD[row - 1]); // + operation
     }
     break;
   case 11:
     for (unsigned char row = 1; row <= 8; row++) {
-      Matrix_send(
-          row, SUB[row - 1]); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
+      Matrix_send(row, SUB[row - 1]); // - operation
     }
     break;
   case 12:
     for (unsigned char row = 1; row <= 8; row++) {
-      Matrix_send(
-          row, MUL[row - 1]); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
+      Matrix_send(row, MUL[row - 1]); // * operation
     }
     break;
   case 13:
     for (unsigned char row = 1; row <= 8; row++) {
-      Matrix_send(
-          row, DIV[row - 1]); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
+      Matrix_send(row, DIV[row - 1]); // / operation
     }
     break;
   }
