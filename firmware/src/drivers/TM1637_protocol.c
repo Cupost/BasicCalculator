@@ -1,4 +1,4 @@
-#include "drivers/Timer.h"
+#include "Timer.h"
 #include <avr/io.h>
 #define CLK_ON PORTC |= (1 << 3)
 #define CLK_OFF PORTC &= (~(1 << 3))

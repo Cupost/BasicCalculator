@@ -1,4 +1,3 @@
-#include "drivers/Timer.h"
 #include <avr/io.h>
 
 void delay_us(char us) {
