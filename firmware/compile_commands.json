@@ -1,0 +1,121 @@
+[
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/main.c",
+      "-o",
+      "build/main.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/main.o"
+  },
+  {
+    "file": "src/drivers/Keypad.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/Keypad.c",
+      "-o",
+      "build/drivers/Keypad.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/Keypad.o"
+  },
+  {
+    "file": "src/drivers/Led8x8Matrix.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/Led8x8Matrix.c",
+      "-o",
+      "build/drivers/Led8x8Matrix.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/Led8x8Matrix.o"
+  },
+  {
+    "file": "src/drivers/Leg7Seg.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/Leg7Seg.c",
+      "-o",
+      "build/drivers/Leg7Seg.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/Leg7Seg.o"
+  },
+  {
+    "file": "src/drivers/SPI_protocol.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/SPI_protocol.c",
+      "-o",
+      "build/drivers/SPI_protocol.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/SPI_protocol.o"
+  },
+  {
+    "file": "src/drivers/TM1637_protocol.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/TM1637_protocol.c",
+      "-o",
+      "build/drivers/TM1637_protocol.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/TM1637_protocol.o"
+  },
+  {
+    "file": "src/drivers/Timer.c",
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000UL",
+      "-Wall",
+      "-Os",
+      "-Iinclude/drivers",
+      "-c",
+      "src/drivers/Timer.c",
+      "-o",
+      "build/drivers/Timer.o"
+    ],
+    "directory": "/home/Thanh/IoT/basic-led-calc/firmware",
+    "output": "build/drivers/Timer.o"
+  }
+]

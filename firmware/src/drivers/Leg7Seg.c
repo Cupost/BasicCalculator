@@ -1,4 +1,4 @@
-#include "TM1637_protocol.c"
+#include "TM1637_protocol.h"
 #include <avr/io.h>
 
 /*Print out display number

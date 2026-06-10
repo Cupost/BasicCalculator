@@ -1,4 +1,4 @@
-#include "SPI_protocol.c"
+#include "SPI_protocol.h"
 #include <avr/io.h>
 #define CS_ON PORTB |= (1 << PB2)
 #define CS_OFF PORTB &= ~(1 << PB2)
