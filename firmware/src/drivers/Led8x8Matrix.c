@@ -45,10 +45,10 @@ unsigned char DIV[8] = {
 };
 
 void Matrix_send(unsigned char addr, unsigned char data) {
-  CS_ON;
+  CS_OFF;
   SPI_MasterTransmit(addr);
   SPI_MasterTransmit(data);
-  CS_OFF;
+  CS_ON;
 }
 
 void Led_matrix_init(void) {
