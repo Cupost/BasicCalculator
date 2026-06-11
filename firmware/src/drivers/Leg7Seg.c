@@ -11,7 +11,7 @@ char Led_out(unsigned int number, char state) {
     Start_condition(state);
     Data_transmit(0b11000000, state); // Address C0H first
     for (unsigned char i = 0; i < 4; i++)
-      Data_transmit(error_code[i], 2); // Sen data number
+      Data_transmit(error_code[i], state); // Sen data number
     Stop_condition(state);
     return 1;
   }
