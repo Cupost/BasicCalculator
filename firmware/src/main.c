@@ -8,28 +8,33 @@
 
 int main() {
   // Setup
-  SPI_MasterInit();
-  TM1637_protocol_init();
-  Keypad_init();
-  Led_matrix_init();
-  Leg7Seg_init();
-  // Variable
+  SPI_MasterInit();       // Start up SPI protocol
+  TM1637_protocol_init(); // Startup 2 wire protocol
+  Keypad_init();          // config port for Keypad
+  Led_matrix_init();      // Initial value for Matrix
+  Leg7Seg_init();         // Initial value for Led7Seg
+
+  // Initialize variable
   unsigned int num1, num2, numt;
   num1 = num2 = 0;
   numt = 10000;
   char keycode, ope;
   ope = 99;
   char state = 0;
-
+  // Start up main loop
   while (1) {
+    //***************************
     do {
       keycode = Read_keypad(); // read keypad return keycode
     } while (keycode == 16);
+    //***************************
 
     switch (keycode) {
-    case 15:          // #
-      state = !state; // Change led out
+
+    case 15:
+      state = !state; // Change led out #
       break;
+
     case 14: // *
       switch (ope) {
       case 13:
@@ -47,34 +52,40 @@ int main() {
       }
       Led_out(numt, 2); // Led out result
       break;
+
     case 13: // D key
       Led_matrix_out(13);
       ope = 13;
       break;
+
     case 12: // C key
       Led_matrix_out(12);
       ope = 12;
       break;
+
     case 11: // B key
       Led_matrix_out(11);
       ope = 11;
       break;
+
     case 10: // A key
       Led_matrix_out(10);
       ope = 10;
       break;
     }
 
+    // End switch case
+    // If keycode is number from 0 to 9
     if (keycode >= 0 && keycode <= 9) {
       if (state == 0) {
-        num1 = (num1 % 1000) * 10 + keycode;
+        num1 = (num1 % 1000) * 10 + keycode; // Num1 update
         Led_out(num1, 0);
       }
       if (state == 1) {
-        num2 = (num2 % 1000) * 10 + keycode;
+        num2 = (num2 % 1000) * 10 + keycode; // Num2 update
         Led_out(num2, 1);
       }
     }
-    delay_ms(70);
+    delay_ms(70); // Bounding button
   }
 }
