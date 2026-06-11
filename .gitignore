@@ -1,4 +1,5 @@
 AGENTS.md 
 firmware/Makefile
 firmware/build/
+.vscode/
 
