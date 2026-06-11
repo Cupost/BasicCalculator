@@ -62,10 +62,10 @@ void Led_matrix_init(void) {
   Matrix_send(0x0B, 0x07);
 
   // 4. Tắt chế độ kiểm tra màn hình (Test mode sẽ làm tất cả LED sáng rực)
-  Matrix_send(0x0C, 0x00); // 0 = Chế độ hoạt động bình thường
+  Matrix_send(0x0F, 0x00); // 0 = Chế độ hoạt động bình thường
 
   // 5. Bật IC (Thoát khỏi chế độ ngủ - Shutdown Mode)
-  Matrix_send(0x0F, 0x01); // 1 = Normal operation
+  Matrix_send(0x0C, 0x01); // 1 = Normal operation
 
   // 6. Xóa rác khởi động: Tắt toàn bộ LED trên ma trận 8x8
   // Lưu ý: Thanh ghi dữ liệu của các hàng được đánh số từ 1 đến 8 (không phải
