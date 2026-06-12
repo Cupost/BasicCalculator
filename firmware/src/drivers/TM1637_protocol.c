@@ -61,6 +61,7 @@ char Data_transmit(char data, char state) {
   DDRC = DDRC & (~(1 << state)); // set DIO Input
   delay_us(5);
   CLK_ON;
+  delay_us(5);
 
   if (PINC & (1 << state)) {
     CLK_OFF;
