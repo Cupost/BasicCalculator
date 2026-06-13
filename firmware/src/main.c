@@ -26,16 +26,22 @@ int main() {
     //***************************
     do {
       keycode = Read_keypad(); // read keypad return keycode
-    } while (keycode == 16);
+    } while (keycode == 16); // no button is being pressed
     //***************************
 
     switch (keycode) {
 
     case 15:
-      state = !state; // Change led out #
+      /* begin state is 0. when in this case, state will change from 0 to 1
+       * again and again
+       * */
+      state = !state;
       break;
 
     case 14: // *
+      /* begin ope = 99, so if no ope button being pressed before, numt will not
+       * change and that make led_out errol message
+       * */
       switch (ope) {
       case 13:
         numt = num1 / num2;
@@ -75,6 +81,7 @@ int main() {
     }
 
     // End switch case
+
     // If keycode is number from 0 to 9
     if (keycode >= 0 && keycode <= 9) {
       if (state == 0) {
