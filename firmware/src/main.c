@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include <avr/io.h>
 
-int main() {
+int16_t main() {
   // Setup
   SPI_MasterInit();       // Start up SPI protocol
   TM1637_protocol_init(); // Startup 2 wire protocol
@@ -15,7 +15,7 @@ int main() {
   Leg7Seg_init();         // Initial value for Led7Seg
 
   // Initialize variable
-  unsigned int num1, num2, numt;
+  uint16_t num1, num2, numt;
   num1 = num2 = 0;
   numt = 10000;
   int8_t keycode, ope;

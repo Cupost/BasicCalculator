@@ -41,7 +41,7 @@ void Start_condition(int8_t state) {
 int8_t Data_transmit(int8_t data, int8_t state) {
   int8_t bit;
   // Send 8 bit data
-  for (int i = 0; i <= 7; i++) {
+  for (int16_t i = 0; i <= 7; i++) {
     bit = (data >> i) & 1;
     CLK_OFF;
     delay_us(5);

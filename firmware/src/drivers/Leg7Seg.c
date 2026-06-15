@@ -4,7 +4,7 @@
 /*Print out display number
  * state : choose DIOx pin
  * */
-int8_t Led_out(unsigned int number, int8_t state) {
+int8_t Led_out(uint16_t number, int8_t state) {
 
   uint8_t error_code[] = {0x86, 0xAF, 0xAF, 0xC0};
   if (number > 9999) {
@@ -49,7 +49,7 @@ int8_t Led_out(unsigned int number, int8_t state) {
  * */
 void Leg7Seg_init(void) {
 
-  for (int i = 0; i < 3; i++) {
+  for (int16_t i = 0; i < 3; i++) {
 
     Start_condition(i);
     Data_transmit(0b01000000, i); // Data write mode setting
