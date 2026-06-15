@@ -9,7 +9,7 @@ void SPI_MasterInit(void) {
   SPCR = (1 << SPE) | (1 << MSTR) | (1 << SPR0);
 }
 
-void SPI_MasterTransmit(char cData) {
+void SPI_MasterTransmit(int8_t cData) {
   /* Start transmission */
   SPDR = cData;
   /* Wait for transmission complete */

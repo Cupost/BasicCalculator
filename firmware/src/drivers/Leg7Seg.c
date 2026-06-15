@@ -4,19 +4,19 @@
 /*Print out display number
  * state : choose DIOx pin
  * */
-char Led_out(unsigned int number, char state) {
+int8_t Led_out(unsigned int number, int8_t state) {
 
-  unsigned char error_code[] = {0x86, 0xAF, 0xAF, 0xC0};
+  uint8_t error_code[] = {0x86, 0xAF, 0xAF, 0xC0};
   if (number > 9999) {
     Start_condition(state);
     Data_transmit(0b11000000, state); // Address C0H first
-    for (unsigned char i = 0; i < 4; i++)
+    for (uint8_t i = 0; i < 4; i++)
       Data_transmit(error_code[i], state); // Sen data number
     Stop_condition(state);
     return 1;
   }
 
-  unsigned char element[4];
+  uint8_t element[4];
   element[0] = number % 10;
   number /= 10;
   element[1] = number % 10;
@@ -25,7 +25,7 @@ char Led_out(unsigned int number, char state) {
   number /= 10;
   element[3] = number % 10;
   number /= 10;
-  const unsigned char SEGMENT_MAP[] = {
+  const uint8_t SEGMENT_MAP[] = {
       0x3F, // 0
       0x06, // 1
       0x5B, // 2
@@ -39,7 +39,7 @@ char Led_out(unsigned int number, char state) {
   };
   Start_condition(state);
   Data_transmit(0b11000000, state); // Address C0H first
-  for (unsigned char i = 0; i < 4; i++)
+  for (uint8_t i = 0; i < 4; i++)
     Data_transmit(SEGMENT_MAP[element[i]], state); // Sen data number
   Stop_condition(state);
   return 1;
@@ -57,7 +57,7 @@ void Leg7Seg_init(void) {
 
     Start_condition(i);
     Data_transmit(0b11000000, i); // Address C0H first
-    for (char j = 0; j < 6; j++)
+    for (int8_t j = 0; j < 6; j++)
       Data_transmit(0b00000000, i); // Clear dump data in IC
     Stop_condition(i);
 

@@ -18,9 +18,9 @@ int main() {
   unsigned int num1, num2, numt;
   num1 = num2 = 0;
   numt = 10000;
-  char keycode, ope;
+  int8_t keycode, ope;
   ope = 99;
-  char state = 0;
+  int8_t state = 0;
   // Start up main loop
   while (1) {
     //***************************

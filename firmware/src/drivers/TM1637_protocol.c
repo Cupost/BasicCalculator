@@ -21,7 +21,7 @@ void TM1637_protocol_init(void) {
  * Create a signal start send data
  * state : Choose DIOx pin
  **/
-void Start_condition(char state) {
+void Start_condition(int8_t state) {
   DIO_ON;
   delay_us(5);
   CLK_ON;
@@ -38,8 +38,8 @@ void Start_condition(char state) {
  * @return 1 is success
  * @return 0 is fail
  * */
-char Data_transmit(char data, char state) {
-  char bit;
+int8_t Data_transmit(int8_t data, int8_t state) {
+  int8_t bit;
   // Send 8 bit data
   for (int i = 0; i <= 7; i++) {
     bit = (data >> i) & 1;
@@ -84,7 +84,7 @@ char Data_transmit(char data, char state) {
  * Create stop signal, turn off transmit
  * state : Choose DIOx pin
  * */
-void Stop_condition(char state) {
+void Stop_condition(int8_t state) {
   CLK_OFF;
   delay_us(5);
   DIO_OFF;

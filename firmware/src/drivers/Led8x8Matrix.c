@@ -3,7 +3,7 @@
 #define CS_ON PORTB |= (1 << PB2)
 #define CS_OFF PORTB &= ~(1 << PB2)
 
-unsigned char ADD[8] = {
+uint8_t ADD[8] = {
     0b00011000, // Hàng 1:    **
     0b00011000, // Hàng 2:    **
     0b00011000, // Hàng 3:    **
@@ -13,7 +13,7 @@ unsigned char ADD[8] = {
     0b00011000, // Hàng 7:    **
     0b00011000  // Hàng 8:    **
 };
-unsigned char SUB[8] = {
+uint8_t SUB[8] = {
     0b00000000, // Hàng 1
     0b00000000, // Hàng 2
     0b00000000, // Hàng 3
@@ -23,7 +23,7 @@ unsigned char SUB[8] = {
     0b00000000, // Hàng 7
     0b00000000  // Hàng 8
 };
-unsigned char MUL[8] = {
+uint8_t MUL[8] = {
     0b11000011, // Hàng 1: **    **
     0b01100110, // Hàng 2:  **  **
     0b00111100, // Hàng 3:   ****
@@ -33,7 +33,7 @@ unsigned char MUL[8] = {
     0b01100110, // Hàng 7:  **  **
     0b11000011  // Hàng 8: **    **
 };
-unsigned char DIV[8] = {
+uint8_t DIV[8] = {
     0b00011000, // Hàng 1:    **
     0b00011000, // Hàng 2:    **
     0b00000000, // Hàng 3
@@ -44,7 +44,7 @@ unsigned char DIV[8] = {
     0b00011000  // Hàng 8:    **
 };
 
-void Matrix_send(unsigned char addr, unsigned char data) {
+void Matrix_send(uint8_t addr, uint8_t data) {
   CS_OFF;
   SPI_MasterTransmit(addr);
   SPI_MasterTransmit(data);
@@ -70,30 +70,30 @@ void Led_matrix_init(void) {
   // 6. Xóa rác khởi động: Tắt toàn bộ LED trên ma trận 8x8
   // Lưu ý: Thanh ghi dữ liệu của các hàng được đánh số từ 1 đến 8 (không phải
   // từ 0)
-  for (unsigned char row = 1; row <= 8; row++) {
+  for (uint8_t row = 1; row <= 8; row++) {
     Matrix_send(row, 0x00); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
   }
 }
 
-char Led_matrix_out(char keycode) {
+int8_t Led_matrix_out(int8_t keycode) {
   switch (keycode) {
   case 10:
-    for (unsigned char row = 1; row <= 8; row++) {
+    for (uint8_t row = 1; row <= 8; row++) {
       Matrix_send(row, ADD[row - 1]); // + operation
     }
     break;
   case 11:
-    for (unsigned char row = 1; row <= 8; row++) {
+    for (uint8_t row = 1; row <= 8; row++) {
       Matrix_send(row, SUB[row - 1]); // - operation
     }
     break;
   case 12:
-    for (unsigned char row = 1; row <= 8; row++) {
+    for (uint8_t row = 1; row <= 8; row++) {
       Matrix_send(row, MUL[row - 1]); // * operation
     }
     break;
   case 13:
-    for (unsigned char row = 1; row <= 8; row++) {
+    for (uint8_t row = 1; row <= 8; row++) {
       Matrix_send(row, DIV[row - 1]); // / operation
     }
     break;
