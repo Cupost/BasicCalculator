@@ -1,3 +1,4 @@
+#include <stdint.h>
 /* *
  * Transmit data to Led module depends on state variable
  * @param:
@@ -7,7 +8,7 @@
  * 1 = transmit completed
  * 0 = transmit uncompleted
  * */
-char Led_out(unsigned int number, char state);
+int8_t Led_out(uint16_t number, int8_t state);
 // State = 0 : Led num 1
 // State = 1 : Led num 2
 // State = 2 : Led result 3

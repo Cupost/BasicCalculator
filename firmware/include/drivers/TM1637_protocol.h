@@ -1,3 +1,4 @@
+#include <stdint.h>
 /* *
  * Init for 2 wire protocol, should be call first before use any function
  * in this header file
@@ -13,16 +14,16 @@ void TM1637_protocol_init(void);
  * @condition :
  * - Call Start_condition() to start transmit
  * */
-char Data_transmit(char data, char state);
+int8_t Data_transmit(int8_t data, int8_t state);
 
 /* *
  * Signal the IC that a data transmission is imminent
  * should be call before use data transmit
  * */
-void Start_condition(char state);
+void Start_condition(int8_t state);
 
 /* *
  * Signal the IC that the transmission is complete
  * @param : state to choose which IC to transmit
  * */
-void Stop_condition(char state);
+void Stop_condition(int8_t state);

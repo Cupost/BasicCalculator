@@ -1,10 +1,11 @@
+#include <stdint.h>
 /* *
  * depends on keycode, this function will change operator on the the **matrix
  * led**
  * @param:
  * keycode : [10,13]
  * */
-char Led_matrix_out(char keycode);
+int8_t Led_matrix_out(int8_t keycode);
 // Value input | output
 // 10 | +
 // 11 | -
@@ -18,7 +19,7 @@ char Led_matrix_out(char keycode);
  * addr : address of memory address
  * data : sen 8bit data you want, this should be command
  * */
-void Matrix_send(unsigned char addr, unsigned char data);
+void Matrix_send(uint8_t addr, uint8_t data);
 
 /* *
  * Init for matrix led
