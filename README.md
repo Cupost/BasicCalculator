@@ -24,8 +24,8 @@
 ### Schematic 
 
 ## Configuration 
-- F_OSC = 16MHz 
-- Board = Arduino nano
+- F_OSC = 8MHz 
+- Board = Arduino nano -mmcu=ATmega329p
 ---
 > [!NOTE]
 > IC TM1637 for Led 7 segment => just need to sent data one time on update value 
