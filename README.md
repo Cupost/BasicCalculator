@@ -14,6 +14,7 @@
 - D14 --> D17 / 4 pin  
   > - [D14] = PORTC0 = DIO-1
   > - [D15] = PORTC1 = DIO-2
+  > - [D16] = PORTC2 = DIO-3
   > - [D17] = PORTC3 = CLK 
 #### Led-matrix-8*8 MAX7219 SPI protocol 
 - D10 + D11 + D13 / 3 pin
