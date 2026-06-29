@@ -1,8 +1,8 @@
 #include <avr/io.h>
-
-int8_t Read_keypad() {
+// FIXME: change return value int8_t -> uint8_t
+uint8_t Read_keypad() {
   PORTD = 0b01111111;
-  int8_t a = (~PIND) & 0x0F;
+  uint8_t a = (~PIND) & 0x0F;
   switch (a) {
   case 1: // key = A
     return 10;
