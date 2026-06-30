@@ -35,8 +35,23 @@ int16_t main() {
       keycode = Read_keypad(); // read keypad return keycode
     } while (keycode == 16); // no button is being pressed
     //***************************
-    if (keycode < 16)
-      PORTC = keycode;
+    if (keycode < 16) {
+      PORTC = 0x0F;
+      delay_ms(200);
+      PORTC = 0;
+      delay_ms(200);
+      PORTC = 0x0F;
+      delay_ms(200);
+      PORTC = 0;
+      delay_ms(200);
+      PORTC = 0x0F;
+      delay_ms(200);
+      PORTC = 0;
+      delay_ms(200);
+      PORTC = 0x0F;
+      delay_ms(200);
+      PORTC = 0;
+    }
     delay_ms(70); // Bounding button
   }
 }
