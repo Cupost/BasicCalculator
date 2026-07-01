@@ -2,6 +2,8 @@
 // FIXME: change return value int8_t -> uint8_t
 uint8_t Read_keypad() {
   PORTD = 0b01111111;
+  __asm__ __volatile__("nop");
+  __asm__ __volatile__("nop");
   uint8_t a = (~PIND) & 0x0F;
   switch (a) {
   case 1: // key = A
@@ -14,6 +16,8 @@ uint8_t Read_keypad() {
     return 1;
   }
   PORTD = 0b10111111;
+  __asm__ __volatile__("nop");
+  __asm__ __volatile__("nop");
   a = (~PIND) & 0x0F;
 
   switch (a) {
@@ -27,6 +31,8 @@ uint8_t Read_keypad() {
     return 4;
   }
   PORTD = 0b11011111;
+  __asm__ __volatile__("nop");
+  __asm__ __volatile__("nop");
   a = (~PIND) & 0x0F;
 
   switch (a) {
@@ -40,6 +46,8 @@ uint8_t Read_keypad() {
     return 7;
   }
   PORTD = 0b11101111;
+  __asm__ __volatile__("nop");
+  __asm__ __volatile__("nop");
   a = (~PIND) & 0x0F;
   switch (a) {
   case 1: // key = D
