@@ -1,6 +1,6 @@
 #include <avr/io.h>
 
-void delay_us(int8_t us) {
+void delay_us(uint8_t us) {
   // 1. Cài đặt Timer 0 ở chế độ CTC (WGM01 = 1, WGM00 = 0)
   TCCR0A = (1 << WGM01);
   // 2. Cài đặt giá trị so sánh (Compare Match Value)
@@ -20,7 +20,7 @@ void delay_us(int8_t us) {
   TCCR0B = 0;
 }
 // Hàm tạo trễ đúng 1 mili-giây bằng Timer0
-void delay_ms(int8_t ms) {
+void delay_ms(uint8_t ms) {
   TCNT0 = 0;   // Khởi tạo giá trị bộ đếm Timer0 bằng 0
   OCR0A = 249; // Đặt giá trị ngưỡng so sánh (Ngưỡng sinh ra 1ms)
 

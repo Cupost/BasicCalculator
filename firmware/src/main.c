@@ -30,7 +30,6 @@ int16_t main() {
     //***************************
 
     switch (keycode) {
-
     case 15:
       /* begin state is 0. when in this case, state will change from 0 to 1
        * again and again

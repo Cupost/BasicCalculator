@@ -1,3 +1,3 @@
 #include <stdint.h>
-void delay_us(int8_t us);
-void delay_ms(int8_t ms);
+void delay_us(uint8_t us);
+void delay_ms(uint8_t ms);
