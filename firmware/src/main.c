@@ -24,9 +24,6 @@ int16_t main() {
 
   // Start up main loop
 
-  // FIXME:
-  // Check keycode return value
-
   DDRC = 0b11111111;
   PORTC = 0;
   while (1) {
@@ -36,21 +33,7 @@ int16_t main() {
     } while (keycode == 16); // no button is being pressed
     //***************************
     if (keycode < 16) {
-      PORTC = 0x0F;
-      delay_ms(200);
-      PORTC = 0;
-      delay_ms(200);
-      PORTC = 0x0F;
-      delay_ms(200);
-      PORTC = 0;
-      delay_ms(200);
-      PORTC = 0x0F;
-      delay_ms(200);
-      PORTC = 0;
-      delay_ms(200);
-      PORTC = 0x0F;
-      delay_ms(200);
-      PORTC = 0;
+      PORTC = keycode;
     }
     delay_ms(70); // Bounding button
   }
