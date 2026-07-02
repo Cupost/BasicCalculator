@@ -92,6 +92,8 @@ int16_t main() {
         Led_out(num2, 1);
       }
     }
+    while (Read_keypad() == keycode)
+      ;           // button is
     delay_ms(70); // Bounding button
   }
 }
