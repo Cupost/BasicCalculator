@@ -39,7 +39,7 @@ int8_t Led_out(uint16_t number, int8_t state) {
   };
   Start_condition(state);
   Data_transmit(0b11000000, state); // Address C0H first
-  for (uint8_t i = 0; i < 4; i++)
+  for (int8_t i = 3; i >= 0; i--)
     Data_transmit(SEGMENT_MAP[element[i]], state); // Sen data number
   Stop_condition(state);
   return 1;
