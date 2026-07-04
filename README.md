@@ -9,7 +9,7 @@
 - Led matrix to show operator
 - Keypad minimalist for input from user 
 
-## Component
+### Component
 #### Module Led-7-segment TM1637 
 - D14 --> D17 / 4 pin  
   > - [D14] = PORTC0 = DIO-1
@@ -23,9 +23,7 @@
   > - [D13] = PORTB5 = SCK/CLK
 #### Keypad 4x4 basic 
 - D0 --> D7 / 8 pin
-  > - [PortD]
-
-### Schematic 
+  > - [PortD] 
 
 ## Configuration 
 - F_OSC = 8MHz 
