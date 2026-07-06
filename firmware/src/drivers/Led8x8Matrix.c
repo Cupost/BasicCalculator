@@ -4,44 +4,44 @@
 #define CS_OFF PORTB &= ~(1 << PB2)
 
 uint8_t ADD[8] = {
-    0b00011000, // Hàng 1:    **
-    0b00011000, // Hàng 2:    **
-    0b00011000, // Hàng 3:    **
-    0b11111111, // Hàng 4: ********
-    0b11111111, // Hàng 5: ********
-    0b00011000, // Hàng 6:    **
-    0b00011000, // Hàng 7:    **
-    0b00011000  // Hàng 8:    **
+    0b00011000, // 1:    **
+    0b00011000, // 2:    **
+    0b00011000, // 3:    **
+    0b11111111, // 4: ********
+    0b11111111, // 5: ********
+    0b00011000, // 6:    **
+    0b00011000, // 7:    **
+    0b00011000  // 8:    **
 };
 uint8_t SUB[8] = {
-    0b00000000, // Hàng 1
-    0b00000000, // Hàng 2
-    0b00000000, // Hàng 3
-    0b11111111, // Hàng 4: ********
-    0b11111111, // Hàng 5: ********
-    0b00000000, // Hàng 6
-    0b00000000, // Hàng 7
-    0b00000000  // Hàng 8
+    0b00000000, // 1
+    0b00000000, // 2
+    0b00000000, // 3
+    0b11111111, // 4: ********
+    0b11111111, // 5: ********
+    0b00000000, // 6
+    0b00000000, // 7
+    0b00000000  // 8
 };
 uint8_t MUL[8] = {
-    0b11000011, // Hàng 1: **    **
-    0b01100110, // Hàng 2:  **  **
-    0b00111100, // Hàng 3:   ****
-    0b00011000, // Hàng 4:    **
-    0b00011000, // Hàng 5:    **
-    0b00111100, // Hàng 6:   ****
-    0b01100110, // Hàng 7:  **  **
-    0b11000011  // Hàng 8: **    **
+    0b11000011, // 1: **    **
+    0b01100110, // 2:  **  **
+    0b00111100, // 3:   ****
+    0b00011000, // 4:    **
+    0b00011000, // 5:    **
+    0b00111100, // 6:   ****
+    0b01100110, // 7:  **  **
+    0b11000011  // 8: **    **
 };
 uint8_t DIV[8] = {
-    0b00011000, // Hàng 1:    **
-    0b00011000, // Hàng 2:    **
-    0b00000000, // Hàng 3
-    0b11111111, // Hàng 4: ********
-    0b11111111, // Hàng 5: ********
-    0b00000000, // Hàng 6
-    0b00011000, // Hàng 7:    **
-    0b00011000  // Hàng 8:    **
+    0b00011000, // 1:    **
+    0b00011000, // 2:    **
+    0b00000000, // 3
+    0b11111111, // 4: ********
+    0b11111111, // 5: ********
+    0b00000000, // 6
+    0b00011000, // 7:    **
+    0b00011000  // 8:    **
 };
 
 void Matrix_send(uint8_t addr, uint8_t data) {
@@ -52,26 +52,25 @@ void Matrix_send(uint8_t addr, uint8_t data) {
 }
 
 void Led_matrix_init(void) {
-  // 1. Tắt chế độ giải mã BCD (Dùng ma trận LED thì không cần giải mã 7 đoạn)
+  // 1. Turn of BCD mode
   Matrix_send(0x09, 0x00);
 
-  // 2. Cài đặt độ sáng (Giá trị từ 0x00 đến 0x0F)
-  Matrix_send(0x0A, 0x07); // Mức sáng trung bình
+  // 2. Setting brightness
+  Matrix_send(0x0A, 0x07); // Medium brightness
 
-  // 3. Giới hạn quét (Quét toàn bộ 8 hàng)
+  // 3. Turn on all 8 row
   Matrix_send(0x0B, 0x07);
 
-  // 4. Tắt chế độ kiểm tra màn hình (Test mode sẽ làm tất cả LED sáng rực)
-  Matrix_send(0x0F, 0x00); // 0 = Chế độ hoạt động bình thường
+  // 4. Turn off display TestMode ( All led turn on in TestMode)
+  Matrix_send(0x0F, 0x00); // 0 = Normal mode
 
-  // 5. Bật IC (Thoát khỏi chế độ ngủ - Shutdown Mode)
+  // Turn off Shutdown mode
   Matrix_send(0x0C, 0x01); // 1 = Normal operation
 
-  // 6. Xóa rác khởi động: Tắt toàn bộ LED trên ma trận 8x8
-  // Lưu ý: Thanh ghi dữ liệu của các hàng được đánh số từ 1 đến 8 (không phải
-  // từ 0)
+  // 6. Clear start garbage memory && Turn off all led at begin
+  // Note: start register is 1 not 0, from 1 -> 8
   for (uint8_t row = 1; row <= 8; row++) {
-    Matrix_send(row, 0x00); // Gửi giá trị 0x00 (tắt hết 8 bit) vào từng hàng
+    Matrix_send(row, 0x00); // Send 0x00 data byte
   }
 }
 

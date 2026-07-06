@@ -11,7 +11,7 @@ int8_t Led_out(uint16_t number, int8_t state) {
     Start_condition(state);
     Data_transmit(0b11000000, state); // Address C0H first
     for (uint8_t i = 0; i < 4; i++)
-      Data_transmit(error_code[i], state); // Sen data number
+      Data_transmit(error_code[i], state); // Send data number
     Stop_condition(state);
     return 1;
   }
@@ -40,7 +40,7 @@ int8_t Led_out(uint16_t number, int8_t state) {
   Start_condition(state);
   Data_transmit(0b11000000, state); // Address C0H first
   for (uint8_t i = 0; i < 4; i++)
-    Data_transmit(SEGMENT_MAP[element[i]], state); // Sen data number
+    Data_transmit(SEGMENT_MAP[element[i]], state); // Send data number
   Stop_condition(state);
   return 1;
 }

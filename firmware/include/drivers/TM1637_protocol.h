@@ -18,12 +18,12 @@ int8_t Data_transmit(int8_t data, int8_t state);
 
 /* *
  * Signal the IC that a data transmission is imminent
- * should be call before use data transmit
+ * should be call before use Data_transmit function
  * */
 void Start_condition(int8_t state);
 
 /* *
- * Signal the IC that the transmission is complete
+ * Signal the IC that the transmission is completed
  * @param : state to choose which IC to transmit
  * */
 void Stop_condition(int8_t state);

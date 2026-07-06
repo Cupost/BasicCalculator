@@ -1,41 +1,38 @@
 #include <avr/io.h>
-
+// Delay with us parameter
 void delay_us(uint8_t us) {
-  // 1. Cài đặt Timer 0 ở chế độ CTC (WGM01 = 1, WGM00 = 0)
+  // 1. Timer0 CTC Mode (WGM01 = 1, WGM00 = 0)
   TCCR0A = (1 << WGM01);
-  // 2. Cài đặt giá trị so sánh (Compare Match Value)
+  // 2. (Compare Match Value)
   OCR0A = 15;
-  // 3. Khởi động Timer với Prescaler = 1 (CS00 = 1)
+  // 3. (CS00 = 1)
   TCCR0B = (1 << CS00);
   while (us > 0) {
-    // Xóa cờ báo ngắt OCF0A bằng cách ghi bit '1' vào nó
+    // Clear interrupt flag bit by write 1 to it
     TIFR0 = (1 << OCF0A);
-    // Chờ cho đến khi cờ OCF0A được bật (Timer đếm đến OCR0A)
+    // Wait for flag
     while ((TIFR0 & (1 << OCF0A)) == 0)
       ;
-    us--; // Giảm số microgiây còn lại
+    us--;
   }
 
-  // 4. Dừng Timer 0 sau khi hoàn thành delay
+  // Turn off timer
   TCCR0B = 0;
 }
-// Hàm tạo trễ đúng 1 mili-giây bằng Timer0
+// Delay with ms parameter
 void delay_ms(uint8_t ms) {
-  TCNT0 = 0;   // Khởi tạo giá trị bộ đếm Timer0 bằng 0
-  OCR0A = 249; // Đặt giá trị ngưỡng so sánh (Ngưỡng sinh ra 1ms)
+  TCNT0 = 0;   // Start count value for timer
+  OCR0A = 249; // Compare Value set
 
-  TCCR0A = (1 << WGM01); // Kích hoạt chế độ CTC (Reset timer khi đạt OCR0A)
-  TCCR0B = (1 << CS01);  // Kích hoạt bộ chia tần (Prescaler) = 64
-  TCCR0B |= (1 << CS00); // Cho phép timer chạy
+  TCCR0A = (1 << WGM01); // Turn on CTC mode
+  TCCR0B = (1 << CS01);  // Set prescale
+  TCCR0B |= (1 << CS00); // Enable timer
   while (ms) {
-    TIFR0 |= (1 << OCF0A); // Xóa cờ báo hiệu (Lưu ý: Với AVR, để xóa cờ ngắt ta
-                           // phải ghi số 1 vào nó)
-    // Vòng lặp chờ: Đứng đợi cho đến khi cờ OCF0A (Output Compare Flag 0 A)
-    // được bật lên mức 1
+    TIFR0 |= (1 << OCF0A); // clear flag
     while ((TIFR0 & (1 << OCF0A)) == 0) {
-      // Chờ đợi
+      // Wait for flag
     }
     ms--;
   }
-  TCCR0B = 0; // Dừng timer để tiết kiệm năng lượng hoặc tránh đếm lố
+  TCCR0B = 0; // Turn off timer
 }

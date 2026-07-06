@@ -4,6 +4,7 @@
 uint8_t Read_keypad() {
   uint8_t a;
   PORTD = 0b11111110;
+  // Add assembly NOP command for PINx can update in time
   __asm__ __volatile__("nop");
   __asm__ __volatile__("nop");
   a = (~PIND & 0xF0) >> 4;
